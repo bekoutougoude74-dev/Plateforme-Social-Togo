@@ -1,0 +1,25 @@
+<div class="sidebar-container glass-card">
+    <div class="sidebar-header">
+        <mat-icon>public</mat-icon>
+        <span>Plateforme Togo</span>
+    </div>
+
+    <mat-nav-list>
+        @for (item of navItems; track item.route) {
+        @if (isAllowed(item)) {
+        <a mat-list-item [routerLink]="item.route" routerLinkActive="active-link" class="nav-item">
+            <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+            <div matListItemTitle>{{ item.label }}</div>
+        </a>
+        }
+        }
+    </mat-nav-list>
+
+    <div class="spacer"></div>
+
+    <div class="sidebar-footer">
+        <button mat-button class="logout-btn" (click)="logout()" routerLink="/auth/login">
+            <mat-icon>logout</mat-icon> <span>Déconnexion</span>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<div class="dashboard-container">
+    <header class="header">
+        <h1 class="gradient-text">Tableau de Bord Agent</h1>
+        <p>Gestion de l'inclusion sociale au Togo</p>
+    </header>
+
+    <div class="stats-grid">
+        <mat-card class="stat-card glass-card">
+            <mat-icon color="primary">groups</mat-icon>
+            <div class="stat-val">{{ stats.totalMenages }}</div>
+            <div class="stat-label">Ménages Recensés</div>
+        </mat-card>
+
+        <mat-card class="stat-card glass-card">
+            <mat-icon color="warn">warning</mat-icon>
+            <div class="stat-val">{{ stats.vulnerables }}</div>
+            <div class="stat-label">Familles Vulnérables</div>
+        </mat-card>
+
+        <mat-card class="stat-card glass-card">
+            <mat-icon color="accent">assignment</mat-icon>
+            <div class="stat-val">{{ stats.programmesActifs }}</div>
+            <div class="stat-label">Programmes Sociaux</div>
+        </mat-card>
+    </div>
+
+    <h2 class="section-title">Actions Rapides</h2>
+    <div class="actions-grid">
+        <mat-card class="action-card glass-card" routerLink="/app/menages/nouveau">
+            <mat-icon>person_add</mat-icon>
+            <h3>Recenser un Ménage</h3>
+            <p>Ajouter une nouvelle famille à la base de données</p>
+        </mat-card>
+
+        <mat-card class="action-card glass-card" routerLink="/app/menages">
+            <mat-icon>view_list</mat-icon>
+            <h3>Liste des Ménages</h3>
+            <p>Consulter et trier les ménages déjà enregistrés</p>
+        </mat-card>
+
+        <mat-card class="action-card glass-card" routerLink="/app/programmes">
+            <mat-icon>redeem</mat-icon>
+            <h3>Programmes Sociaux</h3>
+            <p>Gérer les aides et l'éligibilité</p>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+# Walkthrough - Front‑End Angular (Plateforme Sociale)
+
+L'implémentation du front‑end Angular est terminée. J'ai conçu une interface **premium**, réactive et entièrement conforme aux spécifications du projet.
+
+## 🌟 Choses accomplies
+
+### 1. Design System & Expérience Utilisateur
+- **Thème sombre Premium** : Utilisation d'une palette "Deep Teal" et "Amber" avec un dégradé radial.
+- **Glassmorphism** : Cartes et composants avec effets de transparence et de flou.
+- **Animations** : Transitions fluides pour les formulaires et les chargements.
+
+### 2. Fonctionnalités Clés
+- **Authentification** : Gestion des rôles Agent et Chef avec intercepteur JWT (mocké).
+- **Recensement des Ménages** : Formulaire par étapes (Stepper) gérant l'équipement et les résidents.
+- **Algorithme de Scoring** : Calcul automatique des points (TV, Radio, Voiture, etc.) et de la catégorie sociale.
+- **Tableaux de Bord** : 
+  - **Agent** : Statistiques de vulnérabilité et actions rapides.
+  - **Chef** : Consultation de la situation familiale et de la catégorie.
+
+### 3. Ressources de Production
+- [Dockerfile](file:///c:/Users/Goudé/Desktop/plateforme-sociale/Dockerfile) : Construction multi-étapes pour un déploiement optimisé.
+- [nginx.conf](file:///c:/Users/Goudé/Desktop/plateforme-sociale/nginx.conf) : Configuration du serveur pour le routage Angular.
+
+## 📄 Documentation Produite
+- [Cahier des Charges](file:///c:/Users/Goudé/Desktop/plateforme-sociale/CAHIER_DES_CHARGES.md) : Spécifications complètes en français.
+- [README.md](file:///c:/Users/Goudé/Desktop/plateforme-sociale/README.md) : Guide d'installation.
+
+## 🛠️ Comment tester
+1. Lancez `npm install` puis `npm start`.
+2. Connectez-vous avec `admin / admin` pour l'espace Agent.
+3. Testez le recensement d'un ménage pour voir le score se mettre à jour.
+4. Connectez-vous avec `chef / chef` pour voir l'espace Chef de ménage.
+
+---
+*Le projet est prêt pour l'intégration avec le Back‑End Spring Boot.*

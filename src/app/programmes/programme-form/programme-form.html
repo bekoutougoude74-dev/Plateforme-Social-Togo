@@ -1,0 +1,60 @@
+<div class="form-container animate-fade-in">
+    <mat-card class="glass-card form-card">
+        <mat-card-header>
+            <mat-icon mat-card-avatar>add_circle</mat-icon>
+            <mat-card-title class="gradient-text">Nouveau Programme Social</mat-card-title>
+            <mat-card-subtitle>Définissez les critères d'éligibilité et le budget.</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+            <form [formGroup]="programForm" (ngSubmit)="onSubmit()" class="grid-form">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Nom du programme</mat-label>
+                    <input matInput formControlName="nom" placeholder="Ex: Novissi 2.0">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Description</mat-label>
+                    <textarea matInput formControlName="description" rows="3"></textarea>
+                </mat-form-field>
+
+                <div class="row">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Score Social Minimum</mat-label>
+                        <input matInput type="number" formControlName="scoreMin">
+                        <mat-hint>Seuil de vulnérabilité (0-100)</mat-hint>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Budget Alloué (FCFA)</mat-label>
+                        <input matInput type="number" formControlName="budget">
+                    </mat-form-field>
+                </div>
+
+                <div class="row">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Date de début</mat-label>
+                        <input matInput [matDatepicker]="startPicker" formControlName="dateDebut">
+                        <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #startPicker></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Date de fin</mat-label>
+                        <input matInput [matDatepicker]="endPicker" formControlName="dateFin">
+                        <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #endPicker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+                <div class="actions">
+                    <button mat-button type="button" routerLink="/app/programmes">Annuler</button>
+                    <button mat-raised-button color="primary" type="submit" [disabled]="programForm.invalid"
+                        class="premium-btn">
+                        Créer le Programme
+                    </button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

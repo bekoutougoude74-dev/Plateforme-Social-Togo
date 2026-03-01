@@ -1,0 +1,43 @@
+<div class="login-container">
+    <div class="glass-card login-card animate-fade-in">
+        <div class="card-header">
+            <mat-icon class="logo-icon">public</mat-icon>
+            <h1 class="gradient-text">Plateforme Sociale Togo</h1>
+            <p class="subtitle">Connexion à votre espace sécurisé</p>
+        </div>
+
+        <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Nom d'utilisateur</mat-label>
+                <input matInput name="username" [(ngModel)]="credentials.username" required placeholder="Ex: admin">
+                <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Mot de passe</mat-label>
+                <input matInput type="password" name="password" [(ngModel)]="credentials.password" required
+                    placeholder="••••••••">
+                <mat-icon matSuffix>lock</mat-icon>
+            </mat-form-field>
+
+            @if (error) {
+            <div class="error-message">
+                {{ error }}
+            </div>
+            }
+
+            <button mat-raised-button color="primary" class="full-width premium-btn"
+                [disabled]="!loginForm.form.valid || loading">
+                @if (loading) {
+                <mat-spinner diameter="20"></mat-spinner>
+                } @else {
+                <span>Se Connecter</span>
+                }
+            </button>
+        </form>
+
+        <div class="card-footer">
+            <p>Aide à l'inclusion sociale • ESGIS 2026</p>
+        </div>
+    </div>
+</div>

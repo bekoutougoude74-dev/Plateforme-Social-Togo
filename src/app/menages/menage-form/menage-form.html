@@ -1,0 +1,127 @@
+<div class="form-container animate-fade-in">
+    <div class="info-banner"
+        style="padding: 15px; background: #e0f2f1; margin-bottom: 25px; border-radius: 12px; color: #006064; display: flex; align-items: center; gap: 10px; border: 1px solid rgba(0,96,100,0.1);">
+        <mat-icon>info</mat-icon>
+        <span style="font-weight: 600;">Formulaire de Recensement des Ménages</span>
+    </div>
+
+    <form [formGroup]="householdForm">
+        <mat-stepper linear #stepper class="glass-card premium-stepper">
+            <!-- Étape 1 : Infos Chef & Équipements -->
+            <mat-step [stepControl]="chefGroup">
+                <ng-template matStepLabel>Équipements</ng-template>
+                <div [formGroup]="chefGroup" class="step-content">
+                    <h2 class="gradient-text">Informations Générales</h2>
+                    <div class="grid-form">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Nom du Chef de Ménage</mat-label>
+                            <input matInput formControlName="nomChef" required placeholder="Nom complet">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Adresse / Lieu d'habitation</mat-label>
+                            <input matInput formControlName="adresse" required placeholder="Quartier, Rue...">
+                        </mat-form-field>
+                    </div>
+
+                    <h2 class="gradient-text">Équipements & Statut</h2>
+                    <div class="checkbox-grid">
+                        <mat-checkbox formControlName="hasTv">Télévision</mat-checkbox>
+                        <mat-checkbox formControlName="hasRadio">Radio</mat-checkbox>
+                        <mat-checkbox formControlName="hasMoto">Moto</mat-checkbox>
+                        <mat-checkbox formControlName="hasVoiture">Voiture</mat-checkbox>
+                        <mat-checkbox formControlName="isProprietaire">Propriétaire du lieu</mat-checkbox>
+                    </div>
+
+                    <div class="actions">
+                        <button mat-raised-button color="primary" matStepperNext class="premium-btn">Suivant</button>
+                    </div>
+                </div>
+            </mat-step>
+
+            <!-- Étape 2 : Résidents -->
+            <mat-step [stepControl]="residents">
+                <ng-template matStepLabel>Résidents</ng-template>
+                <div class="step-content">
+                    <h2 class="gradient-text">Membres du Ménage</h2>
+
+                    <div formArrayName="residents" class="residents-list">
+                        @for (resident of residents.controls; track $index) {
+                        <div [formGroupName]="$index" class="resident-item glass-card">
+                            <div class="resident-header">
+                                <h3>Résident #{{$index + 1}} @if ($index === 0) { <span>(Chef)</span> }</h3>
+                                @if ($index > 0) {
+                                <button mat-icon-button color="warn" (click)="removeResident($index)" type="button">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                                }
+                            </div>
+
+                            <div class="grid-form-3">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>CNI</mat-label>
+                                    <input matInput formControlName="cni" required>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Nom</mat-label>
+                                    <input matInput formControlName="nom" required>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Prénom</mat-label>
+                                    <input matInput formControlName="prenom" required>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="grid-form-3">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Tranche Salariale</mat-label>
+                                    <mat-select formControlName="trancheSalariale">
+                                        @for (t of tranchesSalaires; track t) {
+                                        <mat-option [value]="t">{{t}}</mat-option>
+                                        }
+                                    </mat-select>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Date de Naissance</mat-label>
+                                    <input matInput [matDatepicker]="picker" formControlName="dateNaissance">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Diplôme</mat-label>
+                                    <input matInput formControlName="diplomeLePlusEleve">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        }
+                    </div>
+
+                    <button mat-stroked-button color="accent" (click)="addResident()" class="add-btn" type="button">
+                        <mat-icon>add</mat-icon> Ajouter un résident
+                    </button>
+
+                    <div class="actions">
+                        <button mat-button matStepperPrevious type="button">Retour</button>
+                        <button mat-raised-button color="primary" matStepperNext class="premium-btn">Vérifier</button>
+                    </div>
+                </div>
+            </mat-step>
+
+            <!-- Étape 3 : Validation -->
+            <mat-step>
+                <ng-template matStepLabel>Validation</ng-template>
+                <div class="step-content summary">
+                    <h2 class="gradient-text">Enregistrement Final</h2>
+                    <p>Veuillez confirmer l'exactitude des données saisies.</p>
+                    <mat-icon class="check-icon">cloud_done</mat-icon>
+
+                    <div class="actions">
+                        <button mat-button matStepperPrevious type="button">Retour</button>
+                        <button mat-raised-button color="accent" class="premium-btn" (click)="onSubmit()" type="button">
+                            Valider le Recensement
+                        </button>
+                    </div>
+                </div>
+            </mat-step>
+        </mat-stepper>
+    </form>
+</div>

@@ -1,0 +1,90 @@
+.form-container {
+    padding: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+    background: #fdfdfd;
+    min-height: calc(100vh - 80px);
+    /* Better height handling */
+    position: relative;
+    z-index: 10;
+}
+
+.premium-stepper {
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.grid-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.step-content {
+    padding: 20px 0;
+}
+
+.grid-form-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
+}
+
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.residents-list {
+    margin-bottom: 20px;
+}
+
+.resident-item {
+    padding: 20px;
+    margin-bottom: 15px;
+    border-left: 4px solid #006064;
+}
+
+.resident-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+
+    h3 {
+        margin: 0;
+        color: #006064;
+        /* Teal for light theme consistency */
+    }
+}
+
+.add-btn {
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.summary {
+    text-align: center;
+    padding: 40px;
+
+    .check-icon {
+        font-size: 80px;
+        width: 80px;
+        height: 80px;
+        color: #4caf50;
+        margin: 20px 0;
+    }
+}

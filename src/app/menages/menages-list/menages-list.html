@@ -1,0 +1,69 @@
+<div class="list-container">
+    <div class="list-header">
+        <h1 class="gradient-text">Liste des Ménages Recensés</h1>
+        <button mat-raised-button color="primary" routerLink="/app/menages/nouveau" class="premium-btn">
+            <mat-icon>add</mat-icon> Nouveau Ménage
+        </button>
+    </div>
+
+    <mat-form-field appearance="outline" class="filter-field">
+        <mat-label>Rechercher un ménage...</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex: Nom du chef, adresse...">
+        <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    <div class="table-container glass-card">
+        <table mat-table [dataSource]="filteredData">
+
+            <ng-container matColumnDef="chef">
+                <th mat-header-cell *matHeaderCellDef>Chef de Ménage</th>
+                <td mat-cell *matCellDef="let element"> {{element.nomChef}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="adresse">
+                <th mat-header-cell *matHeaderCellDef>Adresse</th>
+                <td mat-cell *matCellDef="let element"> {{element.adresse}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="residents">
+                <th mat-header-cell *matHeaderCellDef>Résidents</th>
+                <td mat-cell *matCellDef="let element"> {{element.residents.length}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="score">
+                <th mat-header-cell *matHeaderCellDef>Score Social</th>
+                <td mat-cell *matCellDef="let element">
+                    <span class="score-badge">{{element.score}} pts</span>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="categorie">
+                <th mat-header-cell *matHeaderCellDef>Catégorie</th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-chip-set>
+                        <mat-chip [color]="getCategoryColor(element.categorieSociale)" selected>
+                            {{element.categorieSociale}}
+                        </mat-chip>
+                    </mat-chip-set>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>Actions</th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button color="info" [routerLink]="['/app/menages', element.id]">
+                        <mat-icon>visibility</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="animate-row"></tr>
+        </table>
+
+        <div *ngIf="filteredData.length === 0" class="no-data">
+            <mat-icon>search_off</mat-icon>
+            <p>Aucun ménage trouvé.</p>
+        </div>
+    </div>
+</div>

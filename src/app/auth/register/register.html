@@ -1,0 +1,51 @@
+<div class="register-container">
+    <div class="glass-card register-card animate-fade-in">
+        <div class="card-header">
+            <mat-icon class="logo-icon">person_add</mat-icon>
+            <h1 class="gradient-text">Création de Compte</h1>
+            <p class="subtitle">Rejoignez la Plateforme Sociale Togo</p>
+        </div>
+
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Nom d'utilisateur</mat-label>
+                <input matInput formControlName="username" placeholder="Ex: JeanDupont">
+                <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" formControlName="email" placeholder="jean@example.com">
+                <mat-icon matSuffix>email</mat-icon>
+            </mat-form-field>
+
+            <div class="grid-2">
+                <mat-form-field appearance="outline">
+                    <mat-label>Mot de passe</mat-label>
+                    <input matInput type="password" formControlName="password" placeholder="••••••••">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Confirmer</mat-label>
+                    <input matInput type="password" formControlName="confirmPassword" placeholder="••••••••">
+                </mat-form-field>
+            </div>
+
+            @if (registerForm.errors?.['mismatch'] && registerForm.get('confirmPassword')?.touched) {
+            <div class="error-text">Les mots de passe ne correspondent pas.</div>
+            }
+
+            <button mat-raised-button color="primary" class="full-width premium-btn"
+                [disabled]="!registerForm.valid || loading">
+                @if (loading) {
+                <mat-icon class="spinner">sync</mat-icon>
+                } @else {
+                <span>S'inscrire</span>
+                }
+            </button>
+        </form>
+
+        <div class="card-footer">
+            <p>Déjà un compte ? <a routerLink="/auth/login">Se connecter</a></p>
+        </div>
+    </div>
+</div>

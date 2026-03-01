@@ -1,0 +1,56 @@
+---
+description: Set up Angular frontend workspace and core files for Plateforme Sociale
+---
+1. Install Node.js (if not already installed) and verify version.
+2. Install Angular CLI globally:
+   // turbo
+   ```bash
+   npm install -g @angular/cli
+   ```
+3. Create Angular workspace in `c:/Users/Goudé/plateforme-sociale/frontend`:
+   // turbo
+   ```bash
+   ng new frontend --directory c:/Users/Goudé/plateforme-sociale/frontend --routing --style css --skip-git
+   ```
+4. Navigate to the workspace directory:
+   // turbo
+   ```bash
+   cd c:/Users/Goudé/plateforme-sociale/frontend
+   ```
+5. Install additional dependencies:
+   // turbo
+   ```bash
+   npm install @angular/material @angular/flex-layout jwt-decode ngx-toastr
+   ```
+6. Generate core modules and components:
+   // turbo
+   ```bash
+   ng generate module auth --routing
+   ng generate component auth/login
+   ng generate component auth/two-factor
+   ng generate guard auth/auth
+   ng generate module household --routing
+   ng generate component household/household-create
+   ng generate component household/household-list
+   ng generate component household/household-detail
+   ng generate service household/household
+   ng generate module program --routing
+   ng generate component program/program-create
+   ng generate component program/program-list
+   ng generate component program/eligible-households
+   ng generate service program/program
+   ```
+7. Create models (interfaces) in `src/app/models`:
+   - household.model.ts
+   - resident.model.ts
+   - program.model.ts
+8. Add HTTP interceptor for JWT token handling.
+9. Configure Angular Material theme in `src/styles.css`.
+10. Create Dockerfile for production build.
+11. Add README.md with project description, setup instructions, and documentation.
+12. Add documentation file `CAHIER_DES_CHARGES.md` describing functional and technical specifications (in French).
+13. Run the development server to verify:
+   // turbo
+   ```bash
+   npm start
+   ```
