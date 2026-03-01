@@ -1,67 +1,40 @@
-# Plan d'implémentation pour le Front‑End Angular
+# Plan d'implémentation pour le Front‑End Angular (Premium)
 
 ## Description de l'objectif
-Développer le front‑end Angular du projet « Plateforme Sociale ». Le front‑end permettra aux agents de gérer les ménages et les programmes sociaux, et aux chefs de ménage de consulter les données de leur ménage et leur éligibilité. Il doit respecter les standards UI/UX modernes, être réactif, et s'intégrer au back‑end Spring Boot existant via l'authentification JWT et des espaces réservés pour la 2FA.
+Développer le front‑end Angular du projet « Plateforme Sociale ». Le front‑end permettra aux agents de gérer les ménages et les programmes sociaux, et aux chefs de ménage de consulter les données de leur ménage et leur éligibilité. 
+**Design choisi** : Thème sombre premium avec une palette "Deep Teal" (#006064) et "Amber" (#FFB300) pour un aspect étatique et moderne.
 
 ## Revue utilisateur requise
-- **Design UI** : Confirmer la palette de couleurs / thème préféré (ex. mode sombre, couleurs de marque). Si vous avez des assets de branding, veuillez les fournir.
-- **Flux d'authentification** : Souhaitez‑vous une implémentation complète de la 2FA maintenant, ou un espace réservé avec intégration future ?
-- **Déploiement** : Confirmer si le Dockerfile doit être généré pour la version production dès maintenant.
+- **Note** : L'utilisateur a demandé de "tout gérer". Je procède donc avec les meilleurs choix de design et d'architecture sans interruption.
 
 ## Modifications proposées
 ---
-### Configuration du projet
-#### [NOUVEAU] Workspace Angular
-- Initialiser un nouveau workspace Angular dans `c:/Users/Goudé/plateforme-sociale/frontend` avec Angular CLI.
-- Installer les dépendances requises : `@angular/material`, `@angular/router`, `jwt-decode`, `ngx-toastr`.
+### Design System & Global Styles
+#### [MODIFIER] [styles.scss](file:///c:/Users/Goudé/Desktop/plateforme-sociale/src/styles.scss)
+- Implémenter un thème sombre Material 3.
+- Définir des variables CSS pour le dégradé "Deep Teal" et les accents "Amber".
+- Ajouter des styles globaux pour des cartes "Glassmorphism" et des boutons premium.
 
-### Modules principaux
-#### [NOUVEAU] Module Authentification
-- Composants : `LoginComponent`, `TwoFactorComponent` (espace réservé).
-- Service : `AuthService` gérant le stockage et le rafraîchissement du JWT.
-- Guard : `AuthGuard` protégeant les routes.
+### Routage & Navigation
+#### [MODIFIER] [app.routes.ts](file:///c:/Users/Goudé/Desktop/plateforme-sociale/src/app/app.routes.ts)
+- Ajouter des routes publiques pour `/recensement`, `/scoring`, et `/inclusion`.
+- Ces pages serviront de vitrine fonctionnelle avant la connexion.
 
-#### [NOUVEAU] Module Ménage
-- Composants : `HouseholdCreateComponent`, `HouseholdListComponent`, `HouseholdDetailComponent`.
-- Service : `HouseholdService` (CRUD via API REST).
-- Interfaces de modèles : `Household`, `Resident`.
+### Modules & Composants
+#### [EXECUTION] Création des pages fonctionnelles publiques
+- **Recensement** : Page détaillant le processus de collecte des données.
+- **Scoring** : Explication de l'algorithme de vulnérabilité.
+- **Inclusion** : Catalogue des programmes sociaux disponibles.
+- **Shared** : Mise à jour du Header pour inclure ces nouvelles sections.
 
-#### [NOUVEAU] Module Programme Social
-- Composants : `ProgramCreateComponent`, `ProgramListComponent`, `EligibleHouseholdsComponent`.
-- Service : `ProgramService`.
-
-### UI / Stylisation
-- Utiliser Angular Material avec un thème personnalisé (primary : #00695c, accent : #ffb300).
-- Implémenter une mise en page réactive avec Flex‑Layout.
-- Ajouter des micro‑animations pour les transitions de formulaires.
-
-### Routage
-- Configurer les routes `/login`, `/dashboard`, `/households`, `/programs` avec `AuthGuard`.
-
-### Intégration
-- URL de base de l'API depuis le fichier d'environnement.
-- Intercepteur HTTP pour attacher le JWT aux requêtes.
-- Flux 2FA placeholder : après connexion réussie, rediriger vers `/2fa` où un code statique est saisi.
-
-### Construction & Déploiement
-- Ajouter un `Dockerfile` pour la construction production Angular (`ng build --prod`) et servir avec Nginx.
-- Inclure des scripts npm pour `dev` et `build`.
+### Documentation
+#### [NOUVEAU] [CAHIER_DES_CHARGES.md](file:///c:/Users/Goudé/Desktop/plateforme-sociale/CAHIER_DES_CHARGES.md)
+- Document complet en français détaillant les spécifications fonctionnelles et techniques.
+#### [MODIFIER] [README.md](file:///c:/Users/Goudé/Desktop/plateforme-sociale/README.md)
+- Guide d'installation et de démarrage rapide.
 
 ## Plan de vérification
-### Tests automatisés
-- **Tests unitaires** (Jest/Karma) :
-  - `AuthService` renvoie le JWT et le stocke correctement.
-  - `AuthGuard` redirige les utilisateurs non authentifiés.
-  - `HouseholdService` appelle les bons endpoints pour les opérations CRUD.
-- **Tests E2E** (Cypress) :
-  - Flux de connexion avec la 2FA placeholder.
-  - Validation et soumission du formulaire de création de ménage.
-  - La vue d'éligibilité affiche les ménages corrects selon une API mockée.
-
-### Vérification manuelle
-1. Exécuter `npm install` puis `npm start`.
-2. Vérifier que l'UI se charge, que la connexion fonctionne et que la navigation est protégée.
-3. Créer un ménage, ajouter des résidents, et consulter les détails.
-4. Déployer l'image Docker localement et s'assurer que l'application est correctement servie.
-
----
+### Manuel
+1. Vérifier l'esthétique premium et la réactivité du layout.
+2. Tester le calcul du score des ménages (ex: TV/Radio + Moto = 10 pts -> Très vulnérable).
+3. Valider la navigation protégée par AuthGuard.
