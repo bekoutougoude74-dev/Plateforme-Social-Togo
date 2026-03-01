@@ -4,9 +4,13 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
+<<<<<<< HEAD
     "types": [
       "node"
     ]
+=======
+    "types": []
+>>>>>>> ba32dcbe8811ab70988d58f1b85ceaf1592d9769
   },
   "include": [
     "src/**/*.ts"
