@@ -18,10 +18,6 @@ describe('App', () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-<<<<<<< HEAD
     expect(compiled.querySelector('h1')?.textContent).toContain('Hello, plateforme-sociale');
-=======
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, plateform-social-ui');
->>>>>>> ba32dcbe8811ab70988d58f1b85ceaf1592d9769
   });
 });

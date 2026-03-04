@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-<<<<<<< HEAD
 import { PublicLayoutComponent } from './shared/layout/public-layout';
 import { MainLayoutComponent } from './shared/layout/main-layout';
 
@@ -65,7 +64,3 @@ export const routes: Routes = [
     { path: 'home', redirectTo: '', pathMatch: 'full' },
     { path: '**', redirectTo: '' }
 ];
-=======
-
-export const routes: Routes = [];
->>>>>>> ba32dcbe8811ab70988d58f1b85ceaf1592d9769

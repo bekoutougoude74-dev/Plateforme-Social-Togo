@@ -3,7 +3,6 @@
   "version": 1,
   "cli": {
     "packageManager": "npm",
-<<<<<<< HEAD
     "analytics": false
   },
   "newProjectRoot": "projects",
@@ -15,15 +14,6 @@
           "style": "scss"
         }
       },
-=======
-    "analytics": "13517b46-856d-4250-9485-155e8d23b3be"
-  },
-  "newProjectRoot": "projects",
-  "projects": {
-    "plateform-social-ui": {
-      "projectType": "application",
-      "schematics": {},
->>>>>>> ba32dcbe8811ab70988d58f1b85ceaf1592d9769
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -33,10 +23,7 @@
           "options": {
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
-<<<<<<< HEAD
             "inlineStyleLanguage": "scss",
-=======
->>>>>>> ba32dcbe8811ab70988d58f1b85ceaf1592d9769
             "assets": [
               {
                 "glob": "**/*",
@@ -44,7 +31,6 @@
               }
             ],
             "styles": [
-<<<<<<< HEAD
               "src/styles.scss"
             ],
             "server": "src/main.server.ts",
@@ -55,10 +41,6 @@
             "ssr": {
               "entry": "src/server.ts"
             }
-=======
-              "src/styles.css"
-            ]
->>>>>>> ba32dcbe8811ab70988d58f1b85ceaf1592d9769
           },
           "configurations": {
             "production": {
@@ -88,17 +70,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-<<<<<<< HEAD
               "buildTarget": "plateforme-sociale:build:production"
             },
             "development": {
               "buildTarget": "plateforme-sociale:build:development"
-=======
-              "buildTarget": "plateform-social-ui:build:production"
-            },
-            "development": {
-              "buildTarget": "plateform-social-ui:build:development"
->>>>>>> ba32dcbe8811ab70988d58f1b85ceaf1592d9769
             }
           },
           "defaultConfiguration": "development"
